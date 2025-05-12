@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+  <style>
+    body 
+    {
+      font-family: Arial, sans-serif;
+      background-image: url('images/bus-bg.jpg'); 
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    h2 
+    {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    form 
+    {
+      background-color: rgba(0, 0, 0, 0.6); 
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    input[type="text"], input[type="email"], input[type="password"] 
+    {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+    }
+    button 
+    {
+      padding: 15px 25px;
+      background-color: #f39c12; 
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover 
+    {
+      background-color: #e67e22; 
+    }
+    #message 
+    {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+  <h2>User Registration</h2>
+  <form id="registerForm">
+    <label>Username:</label><br>
+    <input type="text" id="username" required><br><br>
+    <label>Email:</label><br>
+    <input type="email" id="email" required><br><br>
+    <label>Password:</label><br>
+    <input type="password" id="password" required><br><br>
+    <button type="submit">Register</button>
+  </form>
+  <p id="message"></p>
+  <div class="tooltip">Need Help?
+    <span class="tooltiptext">Use a valid email and a strong password.</span>
+  </div>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("registerForm").addEventListener("submit", async function (e) 
+    {
+      e.preventDefault();
+      const data = {
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+      };
+      try 
+      {
+        const response = await fetch("http://localhost:8080/api/register", 
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+        if (response.ok) 
+        {
+          document.getElementById("message").innerText = "Registration successful!";
+          window.location.href = 'buses.html';  
+        } 
+        else 
+        {
+          document.getElementById("message").innerText = "Registration failed!";
+        }
+      } 
+      catch (error) 
+      {
+        console.error("Error:", error);
+        document.getElementById("message").innerText = "Server error!";
+      }
+    });
+  </script>
+</body>
+</html>

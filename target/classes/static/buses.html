@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Buses - Adventura</title>
+    <link rel="stylesheet" href="buses.css">
+    <style>
+        .filters 
+        {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .filters label, .filters select, .filters input 
+        {
+            margin: 10px 10px 10px 0;
+        }
+        .filters .filter-group 
+        {
+            margin-bottom: 15px;
+        }
+        .filters h3 
+        {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        table 
+        {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td 
+        {
+            padding: 12px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Available Buses</h1>
+    </header>
+    <main>
+        <section class="filters">
+            <h3>Search & Filter Buses</h3>
+            <div class="filter-group">
+                <label for="source">Source:</label>
+                <input type="text" id="source" placeholder="Enter source city">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" placeholder="Enter destination city">
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+            </div>
+            <div class="filter-group">
+                <label>AC Type:</label>
+                <select id="acFilter">
+                    <option value="">All</option>
+                    <option value="ac">AC</option>
+                    <option value="nonac">Non-AC</option>
+                </select>
+                <label>Seat Type:</label>
+                <select id="seatFilter">
+                    <option value="">All</option>
+                    <option value="sleeper">Sleeper</option>
+                    <option value="seater">Seater</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="priceRange">Max Price: ₹</label>
+                <input type="range" id="priceRange" min="100" max="1000" value="1000" oninput="priceValue.innerText = this.value">
+                <span id="priceValue">1000</span>
+            </div>
+            <div class="filter-group">
+                <label>Departure Time:</label>
+                <select id="timeFilter">
+                    <option value="">All</option>
+                    <option value="morning">Morning (5AM - 12PM)</option>
+                    <option value="evening">Evening (12PM - 6PM)</option>
+                    <option value="night">Night (6PM - 12AM)</option>
+                </select>
+            </div>
+        </section>
+        <section class="bus-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bus Name</th>
+                        <th>Route</th>
+                        <th>Start Time</th>
+                        <th>Price</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody id="busTable">
+                    <tr data-source="Chennai" data-destination="Bangalore" data-ac="ac" data-seat="sleeper" data-time="06:00" data-price="550">
+                        <td><a href="seat-selection.html">🚌ExpressLine</a></td>
+                        <td>Chennai to Bangalore</td>
+                        <td>06:00</td>
+                        <td>₹550</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Hyderabad" data-destination="Chennai" data-ac="nonac" data-seat="seater" data-time="09:30" data-price="620">
+                        <td><a href="seat-selection.html">🚌SpeedTravel</a></td>
+                        <td>Hyderabad to Chennai</td>
+                        <td>09:30</td>
+                        <td>₹620</td>
+                        <td>non-ac</td>
+                    </tr>
+                    <tr data-source="Mumbai" data-destination="Pune" data-ac="ac" data-seat="seater" data-time="06:15" data-price="400">
+                        <td><a href="seat-selection.html">🚌FastRide</a></td>
+                        <td>Mumbai to Pune</td>
+                        <td>06:15</td>
+                        <td>₹400</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Chennai" data-destination="Coimbatore" data-ac="nonac" data-seat="sleeper" data-time="21:00" data-price="550">
+                        <td><a href="seat-selection.html">🚌SleepEase</a></td>
+                        <td>Chennai to Coimbatore</td>
+                        <td>21:00</td>
+                        <td>₹550</td>
+                        <td>non-ac</td>
+                    </tr>
+                    <tr data-source="Delhi" data-destination="Kanpur" data-ac="ac" data-seat="seater" data-time="10:30" data-price="620">
+                        <td><a href="seat-selection.html">🚌MetroLink</a></td>
+                        <td>Delhi to Kanpur</td>
+                        <td>10:30</td>
+                        <td>₹620</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Bangalore" data-destination="Mysore" data-ac="nonac" data-seat="seater" data-time="12:00" data-price="300">
+                        <td><a href="seat-selection.html">🚌LocalExpress</a></td>
+                        <td>Bangalore to Mysore</td>
+                        <td>12:00</td>
+                        <td>₹300</td>
+                        <td>non-ac</td>
+                    </tr>
+                    <tr data-source="Kolkata" data-destination="Durgapur" data-ac="ac" data-seat="sleeper" data-time="23:45" data-price="670">
+                        <td><a href="seat-selection.html">🚌NightOwl</a></td>
+                        <td>Kolkata to Durgapur</td>
+                        <td>23:45</td>
+                        <td>₹670</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Ahmedabad" data-destination="Surat" data-ac="ac" data-seat="seater" data-time="14:00" data-price="350">
+                        <td><a href="seat-selection.html">🚌GujaratGo</a></td>
+                        <td>Ahmedabad to Surat</td>
+                        <td>14:00</td>
+                        <td>₹350</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Lucknow" data-destination="Varanasi" data-ac="nonac" data-seat="sleeper" data-time="19:30" data-price="480">
+                        <td><a href="seat-selection.html">🚌UttarPath</a></td>
+                        <td>Lucknow to Varanasi</td>
+                        <td>19:30</td>
+                        <td>₹480</td>
+                        <td>non-ac</td>
+                    </tr>
+                    <tr data-source="Bhopal" data-destination="Indore" data-ac="ac" data-seat="seater" data-time="08:00" data-price="310">
+                        <td><a href="seat-selection.html">🚌MPMover</a></td>
+                        <td>Bhopal to Indore</td>
+                        <td>08:00</td>
+                        <td>₹310</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Jaipur" data-destination="Udaipur" data-ac="nonac" data-seat="sleeper" data-time="20:00" data-price="530">
+                        <td><a href="seat-selection.html">🚌RajPath</a></td>
+                        <td>Jaipur to Udaipur</td>
+                        <td>20:00</td>
+                        <td>₹530</td>
+                        <td>non-ac</td>
+                    </tr>
+                    <tr data-source="Trivandrum" data-destination="Kochi" data-ac="ac" data-seat="seater" data-time="15:30" data-price="370">
+                        <td><a href="seat-selection.html">🚌KeralaTransit</a></td>
+                        <td>Trivandrum to Kochi</td>
+                        <td>15:30</td>
+                        <td>₹370</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Delhi" data-destination="Jaipur" data-ac="ac" data-seat="sleeper" data-time="08:15" data-price="480">
+                        <td><a href="seat-selection.html">🚌ComfortRide</a></td>
+                        <td>Delhi to Jaipur</td>
+                        <td>08:15</td>
+                        <td>₹480</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Coimbatore" data-destination="Madurai" data-ac="nonac" data-seat="seater" data-time="07:45" data-price="410">
+                        <td><a href="seat-selection.html">🚌RoyalBus</a></td>
+                        <td>Coimbatore to Madurai</td>
+                        <td>07:45</td>
+                        <td>₹410</td>
+                        <td>non-ac</td>
+                    </tr>
+                    <tr data-source="Bangalore" data-destination="Mysore" data-ac="ac" data-seat="sleeper" data-time="05:30" data-price="300">
+                        <td><a href="seat-selection.html">🚌GreenWheels</a></td>
+                        <td>Bangalore to Mysore</td>
+                        <td>05:30</td>
+                        <td>₹300</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Chennai" data-destination="Trichy" data-ac="nonac" data-seat="seater" data-time="22:00" data-price="470">
+                        <td><a href="seat-selection.html">🚌NightExpress</a></td>
+                        <td>Chennai to Trichy</td>
+                        <td>22:00</td>
+                        <td>₹470</td>
+                        <td>non-ac</td>
+                    </tr>
+                    <tr data-source="Madurai" data-destination="Cochin" data-ac="ac" data-seat="sleeper" data-time="13:45" data-price="690">
+                        <td><a href="seat-selection.html">🚌SouthernStar</a></td>
+                        <td>Madurai to Cochin</td>
+                        <td>13:45</td>
+                        <td>₹690</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Pune" data-destination="Mumbai" data-ac="nonac" data-seat="seater" data-time="11:00" data-price="350">
+                        <td><a href="seat-selection.html">🚌EcoTransit</a></td>
+                        <td>Pune to Mumbai</td>
+                        <td>11:00</td>
+                        <td>₹350</td>
+                        <td>non-ac</td>
+                    </tr>
+                    <tr data-source="Delhi" data-destination="Agra" data-ac="ac" data-seat="seater" data-time="17:30" data-price="440">
+                        <td><a href="seat-selection.html">🚌UrbanMover</a></td>
+                        <td>Delhi to Agra</td>
+                        <td>17:30</td>
+                        <td>₹440</td>
+                        <td>ac</td>
+                    </tr>
+                    <tr data-source="Vizag" data-destination="Vijayawada" data-ac="nonac" data-seat="sleeper" data-time="20:15" data-price="510">
+                        <td><a href="seat-selection.html">🚌SwiftConnect</a></td>
+                        <td>Vizag to Vijayawada</td>
+                        <td>20:15</td>
+                        <td>₹510</td>
+                        <td>non-ac</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Adventura. All rights reserved.</p>
+    </footer>
+    <script>
+        const filters = {
+            source: document.getElementById('source'),
+            destination: document.getElementById('destination'),
+            ac: document.getElementById('acFilter'),
+            seat: document.getElementById('seatFilter'),
+            price: document.getElementById('priceRange'),
+            time: document.getElementById('timeFilter')
+        };
+        const rows = document.querySelectorAll('#busTable tr');
+        function getTimeSlot(timeStr) 
+        {
+            const hour = parseInt(timeStr.split(':')[0]);
+            if (hour >= 5 && hour < 12) return 'morning';
+            if (hour >= 12 && hour < 18) return 'evening';
+            return 'night';
+        }
+        function filterRows() 
+        {
+            const src = filters.source.value.toLowerCase();
+            const dest = filters.destination.value.toLowerCase();
+            const ac = filters.ac.value;
+            const seat = filters.seat.value;
+            const maxPrice = parseInt(filters.price.value);
+            const timeSlot = filters.time.value;
+            rows.forEach(row => {
+                const rSrc = row.dataset.source.toLowerCase();
+                const rDest = row.dataset.destination.toLowerCase();
+                const rAC = row.dataset.ac;
+                const rSeat = row.dataset.seat;
+                const rTime = row.dataset.time;
+                const rPrice = parseInt(row.dataset.price);
+                const rSlot = getTimeSlot(rTime);
+                const show =
+                    (!src || rSrc.includes(src)) &&
+                    (!dest || rDest.includes(dest)) &&
+                    (!ac || ac === rAC) &&
+                    (!seat || seat === rSeat) &&
+                    (rPrice <= maxPrice) &&
+                    (!timeSlot || timeSlot === rSlot);
+                row.style.display = show ? '' : 'none';
+            });
+        }
+        Object.values(filters).forEach(input => input.addEventListener('input', filterRows));
+        <!-- buses.html -->
+function bookBus(busId, price) {
+    const journeyDate = document.getElementById("journeyDateInput").value;
+    const passengerName = document.getElementById("passengerNameInput").value;
+    if (!journeyDate || !passengerName) 
+    {
+        alert("Please enter both journey date and passenger name.");
+        return;
+    }
+    const bookingData = {
+        bookingDateTime: new Date().toISOString(),
+        journeyDate: journeyDate,
+        bookingDate: new Date().toISOString().split("T")[0],
+        status: "CONFIRMED",
+        passengerName: passengerName
+    };
+    fetch("http://localhost:8080/api/bookings/create", 
+    {
+        method: "POST",
+        headers: 
+        {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(bookingData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Booking created:", data);
+        localStorage.setItem("price", price);
+        localStorage.setItem("passengerName", passengerName);
+        window.location.href = "payment.html";
+    })
+    .catch(error => console.error("Error:", error));
+}
+function selectBus(busId, busName, price) 
+{
+    localStorage.setItem("busId", busId);
+    localStorage.setItem("busName", busName);
+    localStorage.setItem("price", price);
+    window.location.href = "payment.html"; 
+}
+    </script>
+</body>
+</html>

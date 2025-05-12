@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adventura - Payment</title>
+  <link rel="stylesheet" href="payment.css">
+</head>
+<body>
+<style>
+    body 
+    {
+      font-family: Arial, sans-serif;
+      background-image: url('images/bus-bg.jpg'); 
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    h2 
+    {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    form 
+    {
+      background-color: rgba(0, 0, 0, 0.6); 
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    input[type="text"], input[type="email"], input[type="password"] 
+    {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+    }
+    button 
+    {
+      padding: 15px 25px;
+      background-color: #f39c12; 
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover 
+    {
+      background-color: #e67e22; 
+    }
+    #message 
+    {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+    <div class="right">
+      <h1>Make Your Payment</h1>
+      <form id="paymentForm">
+        <label for="payerName">Full Name:</label>
+        <input type="text" id="payerName" name="payerName" required />
+        <label for="amount">Amount (₹):</label>
+        <input type="number" id="amount" name="amount" required />
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod" required>
+          <option value="">Select</option>
+          <option value="Credit Card">Credit Card</option>
+          <option value="Debit Card">Debit Card</option>
+          <option value="UPI">UPI</option>
+          <option value="Net Banking">Net Banking</option>
+        </select>
+        <label for="paymentDate">Payment Date:</label>
+        <input type="date" id="paymentDate" name="paymentDate" required />
+        <button type="submit">Pay Now</button>
+        <p id="paymentMessage"></p>
+      </form>
+    </div>
+  </div>
+  <script>
+window.onload = function() 
+{
+    const price = localStorage.getItem("price");
+    const passengerName = localStorage.getItem("passengerName");
+    if (price && passengerName) 
+    {
+        document.getElementById("paymentInfo").innerText =
+            `Passenger: ${passengerName} | Amount to Pay: ₹${price}`;
+    } 
+    else 
+    {
+        document.getElementById("paymentInfo").innerText =
+            "Booking details not found.";
+    }
+};
+window.onload = function() 
+{
+    const busName = localStorage.getItem("busName");
+    const price = localStorage.getItem("price");
+    if (busName && price) 
+    {
+        document.getElementById("busDetails").innerText = `Bus Selected: ${busName}`;
+        document.getElementById("priceDetails").innerText = `Amount to Pay: ₹${price}`;
+    } 
+    else 
+    {
+        document.getElementById("busDetails").innerText = "No bus selected.";
+        document.getElementById("priceDetails").innerText = "Unable to retrieve price.";
+    }
+};
+</script>
+  <script src="payment.js"></script>
+</body>
+</html>

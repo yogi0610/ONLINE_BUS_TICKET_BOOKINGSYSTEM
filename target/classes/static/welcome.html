@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventura</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+  <div style="background: #ffcc00; color: #000; padding: 8px 0; font-weight: bold; overflow: hidden; white-space: nowrap;">
+    <div style="display: inline-block; animation: scroll-left 10s linear infinite;">
+      🚍 Welcome to Adventura! Enjoy safe and happy travels with us! 🚍
+    </div>
+  </div>
+  <div style="background-color: #d1c4e9; color: #000; text-align: center; font-weight: bold; padding: 8px;">
+    <span id="news-text"></span>
+  </div>
+  <script>
+    const messages = [
+      "🎁 Use ADVENTURA20 to get 20% off your first trip!",
+      "🚌 Book early for Diwali special discounts!",
+      "🌄 Try our new weekend getaways from Bangalore!"
+    ];
+    let i = 0;
+    function rotateNews() 
+    {
+      document.getElementById("news-text").textContent = messages[i];
+      i = (i + 1) % messages.length;
+    }
+    rotateNews();
+    setInterval(rotateNews, 4000); 
+  </script>
+  <div style="background: #f44336; color: #fff; text-align: center; font-weight: bold; padding: 8px;">
+    <span class="blink">🔥 Limited Time Offer: 30% OFF for Students! 🔥</span>
+  </div>
+  <style>
+  .blink 
+  {
+    animation: blinkAnim 1s step-start infinite;
+  }
+  @keyframes blinkAnim 
+  {
+    50% 
+    { 
+      opacity: 0; 
+    }
+  }
+  </style>
+  <div style="background: #e0f7fa; color: #000; padding: 6px 0; font-size: 15px; overflow: hidden; white-space: nowrap;">
+    <div style="display: inline-block; animation: scroll-left 12s linear infinite;">
+      ✨ New routes available from Chennai to Munnar! ✨
+    </div>
+  </div>
+  <div style="background: #ffe0b2; color: #000; padding: 6px 0; font-size: 15px; overflow: hidden; white-space: nowrap;">
+    <div style="display: inline-block; animation: scroll-left 15s linear infinite;">
+      📢 Festival special buses are open for booking now. Hurry up!
+    </div>
+  </div>
+  <style>
+  @keyframes scroll-left 
+  {
+    0% 
+    { 
+      transform: translateX(100%); 
+    }
+    100% 
+    { 
+      transform: translateX(-100%); 
+    }
+  }
+  </style>
+  <style>
+  @keyframes scroll-left 
+  {
+    0% 
+    {
+      transform: translateX(100%);
+    }
+    100% 
+    {
+      transform: translateX(-100%);
+    }
+  }
+  </style>
+    <div id="current-time">
+        <div class="time-box" id="current-date">
+            <p>Date: </p>
+            <p id="date-text"></p>
+        </div>
+        <div class="time-box" id="current-time-text">
+            <p>Time: </p>
+            <p id="time-text"></p>
+        </div>
+        <div class="time-box" id="current-day">
+            <p>Day: </p>
+            <p id="day-text"></p>
+        </div>
+    </div>
+        <div id="google_translate_element" class="translate-widget"></div>
+        <div class="overlay">
+            <div class="overlay">
+                <div class="discount-banner">
+                    🎉 Book now and get <strong>20% OFF</strong> on your first Adventura trip!Use code: ADVENTURA20
+                </div>
+                <div class="hero">
+        <h1>Welcome to Adventura Bus Booking System</h1>
+        <p>Your journey with Adventura starts here. Explore and book your tickets with ease!</p>
+                <div class="buttons">
+                    <a href="index.html" class="btn">Sign Up</a>
+                    <a href="login.html" class="btn">Login</a>
+                    <a href="about.html" class="btn">About</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer class="contact-footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3><i class="fas fa-phone"></i> Contact Us</h3>
+        <p>Phone: +91 98765 43210</p>
+        <p>Email: support@adventura.com</p>
+        <p>© 2025 Adventura Travels. All Rights Reserved.</p>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-map-marker-alt"></i> Branches in India</h3>
+        <ul>
+          <li>Delhi: +91 98123 45678</li>
+          <li>Mumbai: +91 98234 56789</li>
+          <li>Bangalore: +91 98345 67890</li>
+          <li>Kolkata: +91 98456 78901</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-map-marker-alt"></i> Branches in Tamil Nadu</h3>
+        <ul>
+          <li>Chennai: +91 99123 45678</li>
+          <li>Coimbatore: +91 99234 56789</li>
+          <li>Madurai: +91 99345 67890</li>
+          <li>Salem: +91 99456 78901</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+    <script src="script.js"></script>
+<div id="chatbot-container">
+  <div id="chat-header">Adventura Chatbot <span id="chat-close">×</span></div>
+  <div id="chat-body">
+      <div class="chat-msg bot">Hello! How can I help you?</div>
+  </div>
+  <input type="text" id="chat-input" placeholder="Type your message..." />
+</div>
+<button id="chat-toggle">💬</button>
+<script>
+  document.getElementById("chat-toggle").onclick = function () 
+  {
+      document.getElementById("chatbot-container").style.display = "flex";
+      this.style.display = "none";
+  };
+  document.getElementById("chat-close").onclick = function () 
+  {
+      document.getElementById("chatbot-container").style.display = "none";
+      document.getElementById("chat-toggle").style.display = "block";
+  };
+  document.getElementById("chat-input").addEventListener("keypress", function (e) 
+  {
+      if (e.key === "Enter") 
+      {
+          const msg = this.value.trim();
+          if (msg) 
+          {
+              const chatBody = document.getElementById("chat-body");
+              const userMsg = document.createElement("div");
+              userMsg.className = "chat-msg user";
+              userMsg.textContent = msg;
+              chatBody.appendChild(userMsg);
+              const botMsg = document.createElement("div");
+              botMsg.className = "chat-msg bot";
+              botMsg.textContent = "I'll get back to you shortly!";
+              chatBody.appendChild(botMsg);
+              this.value = "";
+              chatBody.scrollTop = chatBody.scrollHeight;
+          }
+      }
+  });
+  </script>
+</body>
+</html>

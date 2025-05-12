@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking</title>
+    <style>
+        body 
+        {
+            font-family: Arial, sans-serif;
+            background-image: url('images/bus-bg.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .form-container 
+        {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1, h2, h3 
+        {
+            text-align: center;
+        }
+        label 
+        {
+            margin: 10px 0 5px;
+            display: block;
+        }
+        input, select 
+        {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button 
+        {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover 
+        {
+            background-color: #218838;
+        }
+        #booking-info 
+        {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Book a Bus Ticket</h1>
+        <div id="booking-info"></div>
+        <form id="bookingForm">
+            <label for="bookingDateTime">Booking Date & Time:</label>
+            <input type="datetime-local" id="bookingDateTime" name="bookingDateTime" required><br>
+            <label for="journeyDate">Journey Date:</label>
+            <input type="date" id="journeyDate" name="journeyDate" required><br>
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+                <option value="CONFIRMED">CONFIRMED</option>
+                <option value="PENDING">PENDING</option>
+            </select><br>
+            <label for="bookingDate">Booking Date:</label>
+            <input type="date" id="bookingDate" name="bookingDate" required><br>
+            <label for="passengerName">Passenger Name:</label>
+            <input type="text" id="passengerName" name="passengerName" required><br>
+            <button type="submit">Submit Booking</button>
+        </form>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const bus = urlParams.get('bus');
+        const time = urlParams.get('time');
+        document.getElementById('booking-info').innerHTML = `
+            <p>Proceed to fill your booking details here.</p>
+        `;
+        document.getElementById('bookingForm').addEventListener('submit', function(event) 
+        {
+            event.preventDefault();
+            const bookingData = {
+                bookingDateTime: document.getElementById('bookingDateTime').value,
+                journeyDate: document.getElementById('journeyDate').value,
+                status: document.getElementById('status').value,
+                bookingDate: document.getElementById('bookingDate').value,
+                passengerName: document.getElementById('passengerName').value,
+                ticket: null
+            };
+            fetch('http://localhost:8080/api/bookings/create', 
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bookingData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Booking created successfully:', data);
+                alert('Booking successful! Redirecting to payment...');
+                window.location.href = 'payment.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Booking failed!');
+            });
+        });
+    </script>
+</body>
+</html>
