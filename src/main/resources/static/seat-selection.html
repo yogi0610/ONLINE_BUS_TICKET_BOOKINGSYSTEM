@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bus Seat Selection</title>
+  <style>
+    body 
+    {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+    header 
+    {
+      background: #0077cc;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.5em;
+    }
+    .facilities 
+    {
+      background: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-around;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .facilities div 
+    {
+      font-size: 0.9em;
+      font-weight: bold;
+      color: #333;
+    }
+    .bus-container 
+    {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .seat-row 
+    {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .seat 
+    {
+      width: 40px;
+      height: 40px;
+      background: #ddd;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.3s;
+    }
+    .seat.selected 
+    {
+      background: #4caf50;
+      color: white;
+    }
+    .seat.booked 
+    {
+      background: #f44336;
+      color: white;
+      cursor: not-allowed;
+    }
+    .legend 
+    {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .legend span 
+    {
+      display: inline-block;
+      margin-right: 20px;
+    }
+    .legend-box 
+    {
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+    .btn-book 
+    {
+      display: block;
+      margin: 30px auto 0;
+      padding: 10px 25px;
+      font-size: 1em;
+      background: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-book:hover 
+    {
+      background: #005fa3;
+    }
+    @media (max-width: 600px) 
+    {
+      .seat 
+      {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+      }
+      .facilities 
+      {
+        flex-direction: column;
+        align-items: center;
+      }
+      .facilities div 
+      {
+        margin: 5px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>Bus Seat Selection</header>
+  <div class="facilities">
+    <div>🍿 Refreshments Provided</div>
+    <div>📷 Camera Surveillance</div>
+    <div>🛏️ Lower & Upper Berth</div>
+  </div>
+  <div class="bus-container">
+    <div class="seat-row">
+  <div class="seat" data-seat="L1">🪑 L1</div>
+  <div class="seat" data-seat="L2">🪑 L2</div>
+  <div class="seat" data-seat="L3">🪑 L3</div>
+  <div class="seat" data-seat="L4">🪑 L4</div>
+</div>
+<div class="seat-row">
+  <div class="seat" data-seat="U1">🛏️ U1</div>
+  <div class="seat" data-seat="U2">🛏️ U2</div>
+  <div class="seat" data-seat="U3">🛏️ U3</div>
+  <div class="seat" data-seat="U4">🛏️ U4</div>
+</div>
+    <div class="legend">
+      <span><div class="legend-box" style="background:#ddd;"></div> Available</span>
+      <span><div class="legend-box" style="background:#4caf50;"></div> Selected</span>
+      <span><div class="legend-box" style="background:#f44336;"></div> Booked</span>
+    </div>
+    <button class="btn-book" onclick="bookSeats()">Book Now</button>
+  </div>
+  <script>
+    document.querySelectorAll('.seat').forEach(seat => 
+    {
+      seat.addEventListener('click', () => 
+      {
+        if (!seat.classList.contains('booked')) 
+        {
+          seat.classList.toggle('selected');
+        }
+      });
+    });
+    function bookSeats() 
+    {
+      const selected = Array.from(document.querySelectorAll('.seat.selected')).map(seat => seat.dataset.seat);
+      if (selected.length === 0) 
+      {
+        alert("Please select at least one seat.");
+        return;
+      }
+      const bookingData = 
+      {
+  username: "test_user",
+  seatNumbers: selected.join(",")  
+};
+      fetch("http://localhost:8080/api/seats/book", 
+      {
+        method: "POST",
+        headers: 
+        {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(bookingData)
+      })
+      .then(res => 
+      {
+        if (!res.ok) throw new Error("Booking failed");
+        return res.json();
+      })
+      .then(data => 
+      {
+        alert("Booking successful!");
+        window.location.href = "add-booking.html"; // Go to next page
+      })
+      .catch(err => 
+      {
+        console.error(err);
+        alert("Error booking seats.");
+      });
+    }
+  </script>
+</body>
+</html>

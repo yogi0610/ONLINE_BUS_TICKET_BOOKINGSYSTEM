@@ -1,0 +1,383 @@
+body 
+{
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to bottom right, #ffffff, #e6f7ff);
+    color: #333;
+}
+a 
+{
+    text-decoration: none;
+    color: inherit;
+}
+h1, h3 
+{
+    margin: 0;
+}
+#current-time 
+{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-bottom: 1px solid #ccc;
+}
+.time-box 
+{
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.overlay 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background: url('/images/imgbus.jpg') no-repeat center center/cover;
+    min-height: 70vh;
+    position: relative;
+    text-align: center;
+}
+.discount-banner 
+{
+    background-color: #ffeb3b;
+    color: #000;
+    font-size: 1.1em;
+    padding: 12px 20px;
+    margin: 20px auto;
+    border-radius: 5px;
+    width: fit-content;
+    animation: pulse 1.5s infinite;
+    font-weight: bold;
+}
+.overlay 
+{
+    background-color: rgba(0, 0, 0, 0.5); 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.discount-banner 
+{
+    background-color: #ffcc00;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    animation: floatBanner 0.8s ease-in-out infinite;
+}
+@keyframes floatBanner 
+{
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+.content h1 
+{
+    font-size: 2.5em;
+}
+.content p 
+{
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+.buttons .btn 
+{
+    text-decoration: none;
+    background-color: #ff0073;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+.buttons .btn:hover 
+{
+    background-color: #0056b3;
+}
+@keyframes pulse 
+{
+    0% { box-shadow: 0 0 0 0 rgba(255, 235, 59, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 235, 59, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 235, 59, 0); }
+}
+.content h1 
+{
+    font-size: 2.8em;
+    color: #f92145;
+    margin-bottom: 10px;
+}
+.content p 
+{
+    font-size: 1.2em;
+    color: #fc0140;
+    margin-bottom: 20px;
+}
+.buttons 
+{
+    margin-top: 20px;
+}
+.btn 
+{
+    display: inline-block;
+    background-color: #007acc;
+    color: white;
+    padding: 12px 25px;
+    margin: 0 10px;
+    border-radius: 6px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+.btn:hover 
+{
+    background-color: #005f99;
+}
+.discount-banner 
+{
+    background-color: #ffcc00;
+    color: #000;
+    padding: 12px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.contact-footer 
+{
+    background-color: #004080;
+    color: white;
+    padding: 30px 0;
+    margin-top: 40px;
+}
+.footer-container
+{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.footer-section 
+{
+    flex: 1 1 300px;
+}
+.footer-section h3 
+{
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #ffdd57;
+}
+.footer-section p, .footer-section ul li 
+{
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.footer-section ul 
+{
+    list-style: none;
+    padding: 0;
+}
+@media (max-width: 768px) 
+{
+    #current-time 
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-container 
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn 
+    {
+        margin: 10px 5px;
+    }
+}
+#chatbot-container 
+{
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+}
+#chat-header 
+{
+    background: #2c3e50;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#chat-close 
+{
+    cursor: pointer;
+    font-weight: bold;
+}
+#chat-body 
+{
+    padding: 10px;
+    overflow-y: auto;
+    height: 200px;
+    background: #f9f9f9;
+}
+.chat-msg 
+{
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 6px;
+    max-width: 80%;
+    clear: both;
+}
+.bot 
+{
+    background: #e0e0e0;
+    align-self: flex-start;
+}
+.user 
+{
+    background: #007bff;
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+}
+#chat-input 
+{
+    border: none;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+#chat-toggle 
+{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+}
+.logo-container 
+{
+    text-align: center;     
+    padding: 20px;          
+    background-color: #f0f0f0; 
+    border-bottom: 1px solid #ccc; 
+}
+.logo-container img 
+{
+    max-width: 200px;       
+    height: auto;           
+}
+body, html 
+{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+.hero 
+{
+    position: relative;
+    background-image: url('your-background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.hero::before 
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 0;
+}
+.hero > * 
+{
+    position: relative;
+    z-index: 1;
+}
+.promo-banner 
+{
+    background: #FFD700;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+}
+.hero h1 
+{
+    font-size: 3rem;
+    margin: 10px 0;
+    
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+.hero p 
+{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+text-shadow: 0.5px 0.5px 1.5px rgba(0, 0, 0, 0.6);
+}
+.buttons button 
+{
+    background-color: #ff0066;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.buttons button:hover 
+{
+    background-color: #e6005c;
+}

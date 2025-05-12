@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Receipt</title>
+  <link rel="stylesheet" href="receipt.css">
+</head>
+<body>
+  <div class="receipt-container" id="receipt">
+    <h2>Payment Receipt</h2>
+    <div class="receipt-details">
+      <p><strong>Name:</strong> <span id="payerName"></span></p>
+      <p><strong>Amount Paid:</strong> ₹<span id="amount"></span></p>
+      <p><strong>Payment Method:</strong> <span id="paymentMethod"></span></p>
+      <p><strong>Payment Date:</strong> <span id="paymentDate"></span></p>
+    </div>
+    <div class="success-msg">✅ Payment successful!</div>
+    <p>Thanks for choosing Adventura! Have a great and comfortable journey!!!</p>
+  </div>
+  <div style="text-align:center; margin-top: 20px;">
+    <button onclick="downloadReceipt()">Download Receipt PDF</button>
+    <button onclick="window.location.href='welcome.html'">Back to Home</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>
+    const data = JSON.parse(localStorage.getItem('paymentData'));
+    if (data) 
+    {
+      document.getElementById('payerName').innerText = data.payerName;
+      document.getElementById('amount').innerText = data.amount;
+      document.getElementById('paymentMethod').innerText = data.paymentMethod;
+      document.getElementById('paymentDate').innerText = data.paymentDate;
+    }
+    function downloadReceipt() 
+    {
+      const element = document.getElementById('receipt');
+      const opt = 
+      {
+        margin:       0.5,
+        filename:     'payment_receipt.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
+  <script src="receipt.js"></script>
+</body>
+</html>

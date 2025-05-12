@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Bus Ticket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Bus Ticket</h2>
+        <form id="ticketForm">
+            <label for="passengerName">Passenger Name</label>
+            <input type="text" name="passengerName" id="passengerName" required>
+            <label for="busNumber">Bus Number</label>
+            <input type="text" name="busNumber" id="busNumber" required>
+            <label for="departureDate">Departure Date</label>
+            <input type="date" name="departureDate" id="departureDate" required>
+            <label for="seatNumber">Seat Number</label>
+            <input type="text" name="seatNumber" id="seatNumber" required>
+            <label for="source">Source</label>
+            <input type="text" name="source" id="source" required>
+            <label for="destination">Destination</label>
+            <input type="text" name="destination" id="destination" required>
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price" required>
+            <button type="submit">Add Ticket</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("ticketForm").addEventListener("submit", function(event) 
+        {
+            event.preventDefault();
+            const ticketData = {
+                passengerName: document.getElementById("passengerName").value,
+                busNumber: document.getElementById("busNumber").value,
+                departureDate: document.getElementById("departureDate").value,
+                seatNumber: document.getElementById("seatNumber").value,
+                source: document.getElementById("source").value,
+                destination: document.getElementById("destination").value,
+                price: document.getElementById("price").value
+            };
+            fetch("http://localhost:8080/api/tickets/add", 
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(ticketData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Ticket Added Successfully!");
+                console.log("Success:", data);
+            })
+            .catch((error) => {
+                alert("Error adding ticket");
+                console.error("Error:", error);
+            });
+        });
+    </script>
+</body>
+</html>
